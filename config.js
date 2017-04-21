@@ -1,7 +1,7 @@
-// # Ghost Configuration
-// Setup your Ghost install for various [environments](http://support.ghost.org/config/#about-environments).
+var cfev = require("cfenv");
+var appEnv = cfenv.getAppEnv();
 
-// Ghost runs in `development` mode by default. Full documentation can be found at http://support.ghost.org/config/
+// # Ghost Configuration
 
 var path = require('path'),
     config;
@@ -9,7 +9,7 @@ var path = require('path'),
 config = {
     // ### Production
     production: {
-        url: 'http://my-ghost-blog.com',
+        url: appEnv.url,
         mail: {},
         database: {
             client: 'sqlite3',
@@ -20,8 +20,8 @@ config = {
         },
 
         server: {
-            host: '127.0.0.1',
-            port: '2368'
+            host: '0.0.0.0',
+            port: appEnv.port,
         }
     },
 
