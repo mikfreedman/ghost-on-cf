@@ -4,12 +4,13 @@
   "description": "wrapper to run ghost on Cloud Foundry",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index"
   },
   "author": "Michael Freedman",
   "license": "MIT",
   "dependencies": {
     "cfenv": "^1.0.4",
-    "ghost" : "git+https://github.com/TryGhost/Ghost.git#0.11.8"
+    "ghost" : "0.11.8",
+    "ghost-s3-service": "^1.0.2"
   }
 }
