@@ -5,23 +5,30 @@ var path = require('path'),
 
 var cfenv = require("cfenv");
 var appEnv = cfenv.getAppEnv();
-var pkg   = require("./package.json");
-var sqlCredentials = appEnv.getService("ghost-mysql").credentials;
+var creds = appEnv.getService("ghost-mysql").credentials;
 
-sqlCredentials.database = sqlCredentials.name
-sqlCredentials.user = sqlCredentials.username
-sqlCredentials.host = sqlCredentials.hostname
+var database = {
+  client: 'mysql',
+  connection: {
+    database: creds.name,
+    user: creds.username,
+    host: creds.hostname
+  },
+  debug: false
+}
 
-var mailCredentials = appEnv.getService("ghost-mail").credentials;
-mailCredentials.transport = 'SMTP';
+var creds = appEnv.getService("ghost-mail").credentials;
 
-mailCredentials.options = {
-  host: mailCredentials.hostname,
-  port: 25,
-  service: 'sendgrid',
-  auth: {
-    user: mailCredentials.username,
-    pass: mailCredentials.password
+var mail = {
+  transport: 'SMTP',
+  options: {
+    host: cred.hostname,
+    port: 25,
+    service: 'sendgrid',
+    auth: {
+      user: cred.username,
+      pass: cred.password
+    }
   }
 }
 
@@ -45,18 +52,14 @@ if (!!process.env.S3_ACCESS_KEY_ID) {
 config = {
   production: {
     url: appEnv.url,
-    mail: mailCredentials,
-    database: {
-      client: 'mysql',
-      connection: sqlCredentials,
-      debug: false
-    },
+    mail: mail,
+    database: database,
     server: {
       host: '0.0.0.0',
       port: appEnv.port,
     },
     paths: {
-        contentPath: path.join(__dirname, 'content'),
+      contentPath: path.join(__dirname, 'content'),
     },
     fileStorage: fileStorage,
     storage: storage
