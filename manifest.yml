@@ -1,0 +1,7 @@
+applications:
+- name: ghost-on-cf
+  instances: 1
+  memory: 512M
+  services:
+  - ghost-mail
+  - ghost-mysql
