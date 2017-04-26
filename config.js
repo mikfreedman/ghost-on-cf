@@ -5,29 +5,24 @@ var path = require('path'),
 
 var cfenv = require("cfenv");
 var appEnv = cfenv.getAppEnv();
-var creds = appEnv.getService("ghost-mysql").credentials;
 
+var creds = appEnv.getService("ghost-mysql").credentials;
 var database = {
   client: 'mysql',
-  connection: {
-    database: creds.name,
-    user: creds.username,
-    host: creds.hostname
-  },
+  connection: creds.uri,
   debug: false
 }
 
 var creds = appEnv.getService("ghost-mail").credentials;
-
 var mail = {
   transport: 'SMTP',
   options: {
-    host: cred.hostname,
+    host: creds.hostname,
     port: 25,
     service: 'sendgrid',
     auth: {
-      user: cred.username,
-      pass: cred.password
+      user: creds.username,
+      pass: creds.password
     }
   }
 }
