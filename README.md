@@ -15,13 +15,13 @@ The versions are all locked in, but ghost continues to be under active developme
 
 ### AWS
 
-This release expects and s3 bucket, the following environment variables should be set
+This release expects an s3 bucket, the following environment variables should be set
 
-  * AWS_ACCESS_KEY
-  * AWS_SECRET
-  * AWS_BUCKET
-  * AWS_REGION
-  * AWS_URL
+  * S3_ACCESS_KEY_ID
+  * S3_ACCESS_SECRET_KEY
+  * S3_BUCKET_NAME
+  * S3_BUCKET_REGION
+  * S3_ASSET_HOST_URL
 
 ### Local modifications
 

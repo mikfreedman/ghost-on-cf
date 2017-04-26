@@ -1,7 +1,10 @@
+var path = require('path'),
+  config,
+  fileStorage,
+  storage;
+
 var cfenv = require("cfenv");
 var appEnv = cfenv.getAppEnv();
-var path = require('path'),
-  config;
 var pkg   = require("./package.json");
 var sqlCredentials = appEnv.getService("ghost-mysql").credentials;
 
@@ -22,6 +25,23 @@ mailCredentials.options = {
   }
 }
 
+if (!!process.env.S3_ACCESS_KEY_ID) {
+  fileStorage = true
+  storage = {
+    active: 'ghost-s3',
+    'ghost-s3': {
+      accessKeyId:     process.env.S3_ACCESS_KEY_ID,
+      secretAccessKey: process.env.S3_ACCESS_SECRET_KEY,
+      bucket:          process.env.S3_BUCKET_NAME,
+      region:          process.env.S3_BUCKET_REGION,
+      assetHost:       process.env.S3_ASSET_HOST_URL
+    }
+  }
+} else {
+  fileStorage = false
+  storage = {}
+}
+
 config = {
   production: {
     url: appEnv.url,
@@ -38,16 +58,8 @@ config = {
     paths: {
         contentPath: path.join(__dirname, 'content'),
     },
-    storage: {
-      active: 'ghost-s3',
-      'ghost-s3': {
-        accessKeyId: process.env.AWS_ACCESS_KEY,
-        secretAccessKey: process.env.AWS_SECRET,
-        bucket: process.env.AWS_BUCKET,
-        region: process.env.AWS_REGION,
-        assetHost: process.env.AWS_URL
-      }
-    }
+    fileStorage: fileStorage,
+    storage: storage
   }
 };
 
