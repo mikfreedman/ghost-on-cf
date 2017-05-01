@@ -28,6 +28,13 @@ This release expects an s3 bucket, the following environment variables should be
  * probably want to modify [manifest.yml](manifest.yml) to change things like app name, or to add a route
  * may want to modify [config.js](config.js) to remove mail configuration if that isn't an option in your environment
 
+### TODO
+
+ * Add support for GCP 
+ * Add support for Database file storage
+ * Get services by tag instead of name
+ * Make the javascript more excellent
+
 ## References
 
 * http://www.starkandwayne.com/blog/deploy-ghost-blog-to-cloud-foundry/ - Great reference, inspiration for creating this repo - starting to show its age a little!
