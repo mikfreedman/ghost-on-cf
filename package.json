@@ -11,7 +11,7 @@
   "dependencies": {
     "cfenv": "^1.0.4",
     "ghost": "0.11.8",
-    "ghost-blobber-service": "file:///Users/mik/workspace/ghost-blobber-service",
+    "ghost-blobber-service": "1.0.1",
     "ghost-s3-service": "^1.0.2"
   }
 }
