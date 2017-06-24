@@ -15,13 +15,20 @@ The versions are all locked in, but ghost continues to be under active developme
 
 ### AWS
 
-This release expects an s3 bucket, the following environment variables should be set
+This release expects either an s3 bucket or a [blobber](https://github.com/mikfreedman/blobber) endpoint, the following environment variables should be set
+
+Either define these keys:
 
   * S3_ACCESS_KEY_ID
   * S3_ACCESS_SECRET_KEY
   * S3_BUCKET_NAME
   * S3_BUCKET_REGION
   * S3_ASSET_HOST_URL
+
+Or these keys:
+
+ * BLOBBER_API_KEY
+ * BLOBBER_API_URL
 
 ### Local modifications
 

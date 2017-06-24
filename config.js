@@ -17,9 +17,16 @@ if (!!process.env.S3_ACCESS_KEY_ID) {
       assetHost:       process.env.S3_ASSET_HOST_URL
     }
   }
-} else {
-  fileStorage = false
-  storage = {}
+}
+else {
+  fileStorage = true
+  storage = {
+    active: 'ghost-blobber-service',
+    'ghost-blobber-service': {
+      url: process.env.BLOBBER_API_URL,
+      apiKey: process.env.BLOBBER_API_KEY
+    }
+  }
 }
 
 if(process.env.NODE_ENV === 'production') {
